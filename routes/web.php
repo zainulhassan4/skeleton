@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+Route::get('password/set/{token}', 'Auth\ResetPasswordController@showSetForm')->name('password.set');
+Route::get('register/verify', 'Auth\RegisterController@setUserAsVerified')->name('register.verify');
+
+Route::get('home', 'HomeController@index');
