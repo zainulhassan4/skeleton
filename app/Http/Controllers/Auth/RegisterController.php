@@ -6,6 +6,10 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\ForgotPasswordController as PasswordReset;
 
 class RegisterController extends Controller
 {
@@ -24,6 +28,7 @@ class RegisterController extends Controller
 
     /**
      * Where to redirect users after registration.
+     * Edit: This gets called after being verified.
      *
      * @var string
      */
@@ -36,7 +41,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest', ['except' => 'setUserAsVerified']);
+        $this->middleware('auth', ['only' => 'setUserAsVerified']);
     }
 
     /**
@@ -50,7 +56,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
         ]);
     }
 
@@ -65,7 +70,37 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt(Str::random(255)),
         ]);
+    }
+    
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        // We don't want users logged in
+        $this->guard()->logout();
+        
+        // We redirect them to the same page with the appropriate message
+        return (new PasswordReset())->sendResetLinkEmail($request);
+    }
+    
+    /**
+     * Set user as verified
+     *
+     * @return void
+     */
+    protected function setUserAsVerified()
+    {
+        $user = Auth::user();
+        $user->verified = true;
+        $user->save();
+
+        return redirect($this->redirectTo);
     }
 }
