@@ -1,6 +1,11 @@
+/npm-debug.log
+/nbproject
 /node_modules
 /public/storage
 /public/hot
+/public/css
+/public/js
+/public/mix-manifest.json
 /storage/*.key
 /vendor
 /.idea
