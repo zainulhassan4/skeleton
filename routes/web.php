@@ -19,3 +19,10 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Auth::routes();
+Route::get('password/set/{token}', 'Auth\ResetPasswordController@showSetForm')->name('password.set');
+Route::get('register/verify', 'Auth\RegisterController@setUserAsVerified')->name('register.verify');
+
+Route::get('home', 'HomeController@index');
+
