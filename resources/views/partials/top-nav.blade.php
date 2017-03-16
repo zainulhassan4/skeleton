@@ -6,8 +6,13 @@
                 {{ config('app.name', 'Home') }}
             </a>
         </div>
+        <div class="row">
+            <div class="center-block max-w-50">
+                {!! menu('buckets', 'bootstrap') !!}
+            </div>
+        </div>
     </div>
-    <div class="top-right links">
+    <div class="top-right links">        
         @if (Auth::check())
             <a href="{{ url('/home') }}">Home</a>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
