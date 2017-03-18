@@ -26,8 +26,10 @@ Auth::routes();
 Route::get('password/set/{token}', 'Auth\ResetPasswordController@showSetForm')->name('password.set');
 Route::get('register/verify', 'Auth\RegisterController@setUserAsVerified')->name('register.verify');
 
+// Open routes
+Route::group(['as' => 'voyager.'], function () {
+    Route::get('page/{page_id}', 'PageController@show')->name('page');
+});
+
 // User routes
 Route::get('home', 'HomeController@index');
-Route::group(['as' => 'voyager.'], function () {
-   Route::get('pages/{id}', '\TCG\Voyager\Http\Controllers\VoyagerBreadController@show')->name('pages');
-});
