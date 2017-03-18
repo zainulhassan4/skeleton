@@ -9,14 +9,11 @@ class PageController extends Controller
 {
     /**
      * Return the requested page
-     * @param Page $page
+     * @param Page $page - Eager loaded
      * @return \Illuminate\View\View
      */
     public function show(Page $page)
     {
-        // Get eager loading results
-        $page = $page->first();
-        
         return view('page', compact('page'));
     }
 }

@@ -16,4 +16,14 @@ class Page extends VoyagerPage
     {
         return $this->hasMany('TCG\Voyager\Models\Post');
     }
+    
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
