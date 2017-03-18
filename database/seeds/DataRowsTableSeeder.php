@@ -48,6 +48,36 @@ class DataRowsTableSeeder extends Seeder
             ])->save();
         }
 
+        $dataRow = $this->dataRow($postDataType, 'category_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'Category',
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 0,
+                'delete'       => 1,
+                'details'      => '',
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($postDataType, 'page_id');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'number',
+                'display_name' => 'Page',
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 0,
+                'delete'       => 1,
+                'details'      => '',
+            ])->save();
+        }
+
         $dataRow = $this->dataRow($postDataType, 'title');
         if (!$dataRow->exists) {
             $dataRow->fill([
