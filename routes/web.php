@@ -28,6 +28,7 @@ Route::get('register/verify', 'Auth\RegisterController@setUserAsVerified')->name
 
 // Open routes
 Route::get('page/{page}', 'PageController@show')->name('page');
+Route::get('page/{page}/post/{post}', 'PostController@show')->name('post');
 
 // User routes
 Route::get('home', 'HomeController@index');
