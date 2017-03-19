@@ -14,7 +14,7 @@ class Page extends VoyagerPage
      */
     public function posts()
     {
-        return $this->hasMany('TCG\Voyager\Models\Post');
+        return $this->hasMany('App\Post');
     }
     
     /**
