@@ -33,14 +33,14 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ $comment->userid }}</div>
+                    <div class="panel-heading">{{ $comment->user->name }}</div>
 
                     <div class="panel-body">
-                        {{ $comment->active 
-                            ? $comment->body 
+                        {{ $comment->active
+                            ? $comment->body
                             : 'The comment has been blocked by the admin: ' 
                         }} <br/>
-                        <i> {{ $comment->admin_comment }} </i>
+                        <i>{{ $comment->admin_remark }}</i>
                     </div>
                 </div>
             </div>

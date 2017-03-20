@@ -6,7 +6,7 @@ use TCG\Voyager\Models\Post as VoyagerPost;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends VoyagerPost
-{    
+{
     /**
      * Get the comments associated with the post.
      */

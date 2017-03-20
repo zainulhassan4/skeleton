@@ -17,7 +17,8 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->integer('post_id');
             $table->integer('user_id');
-            $table->string('comment', 500);
+            $table->string('body', 500);
+            $table->string('admin_remark', 500);
             $table->boolean('active')->default(1);
             $table->timestampsTz();
         });
