@@ -11,7 +11,7 @@ use App\Page;
 class PostController extends Controller
 {
     /**
-     * Return the requested page
+     * Return the requested post with complete hierarchy
      * @param string $pageSlug
      * @param string $postSlug
      * @return \Illuminate\View\View

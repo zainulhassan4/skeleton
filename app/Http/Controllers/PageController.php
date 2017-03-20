@@ -8,7 +8,7 @@ use App\Page;
 class PageController extends Controller
 {
     /**
-     * Return the requested page
+     * Return the requested page with posts eager loaded
      * @param Page $page - Eager loaded
      * @return \Illuminate\View\View
      */

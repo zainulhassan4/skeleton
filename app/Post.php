@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends VoyagerPost
 {
     /**
-     * Get the comments associated with the post.
+     * The comments relationship associated with the post.
      */
     public function comments()
     {
@@ -16,7 +16,7 @@ class Post extends VoyagerPost
     }
     
     /**
-     * Get the page record associated with the post.
+     * The page relationship associated with the post.
      */
     public function page()
     {
