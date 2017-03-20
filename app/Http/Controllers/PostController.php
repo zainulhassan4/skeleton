@@ -12,20 +12,19 @@ class PostController extends Controller
 {
     /**
      * Return the requested page
-     * @param Post $postSlug - Eager loaded
-     * @param Post $postSlug - Eager loaded
+     * @param string $pageSlug
+     * @param string $postSlug
      * @return \Illuminate\View\View
      */
     public function show($pageSlug, $postSlug)
     {
-        $page = DB::table('pages')
-                ->leftJoin('posts', 'pages.id', '=', 'posts.page_id')
-                ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
-                ->where('pages.slug', $pageSlug)
-                ->where('posts.slug', $postSlug)
-                ->get();
-        dd($page);
+        $page = Page::where('pages.slug', $pageSlug)
+            ->with(['posts' => function ($q) use ($postSlug) {
+                $q->where('posts.slug', $postSlug);
+            }])
+            ->with('posts.comments')
+            ->first();
 
-        return view('page', compact('page'));
+        return view('post', compact('page'));
     }
 }
