@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Page extends VoyagerPage
 {
+    /**
+     * Always eager load the posts with page
+     * @var array
+     */
     protected $with = ['posts'];
     
     /**
