@@ -21,6 +21,9 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+// Voyager User routes TODO: needs fascade and service provider
+App\Http\Controllers\VoyagerUser::routes();
+
 // Auth routes
 Auth::routes();
 Route::get('password/set/{token}', 'Auth\ResetPasswordController@showSetForm')->name('password.set');
