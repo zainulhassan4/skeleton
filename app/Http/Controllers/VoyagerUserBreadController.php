@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use TCG\Voyager\Http\Controllers\VoyagerBreadController;
 use TCG\Voyager\Http\Controllers\Traits\BreadRelationshipParser;
-
+use \TCG\Voyager\Facades\Voyager;
 
 class VoyagerUserBreadController extends VoyagerBreadController
 {
@@ -92,10 +92,10 @@ class VoyagerUserBreadController extends VoyagerBreadController
         // Check if BREAD is Translatable
         $isModelTranslatable = isBreadTranslatable($dataTypeContent);
 
-        $view = 'voyager::bread.edit-add';
+        $view = 'vendor.voyager-user.bread.edit-add';
 
-        if (view()->exists("voyager::$slug.edit-add")) {
-            $view = "voyager::$slug.edit-add";
+        if (view()->exists("vendor.voyager-user.$slug.edit-add")) {
+            $view = "vendor.voyager-user.$slug.edit-add";
         }
 
         return view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable'));
